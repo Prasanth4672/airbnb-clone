@@ -9,7 +9,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
-import Input from "../Input";
+import Input from "../inputs/Input";
 import { error } from "console";
 import toast from "react-hot-toast";
 import Button from "../Button";
@@ -19,6 +19,7 @@ import {useRouter} from "next/navigation";
 const LoginModal=()=>{
 
     const router = useRouter();
+
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const [isLoading,setIsLoading] = useState(false);
@@ -52,6 +53,11 @@ const LoginModal=()=>{
       }
     });
   }
+
+    const toogle = useCallback(()=>{
+        loginModal.onClose();
+        registerModal.onOpen();
+    },[loginModal,registerModal]);
 
     const bodyContent=(
         <div className="flex flex-col gap-4">
@@ -98,10 +104,12 @@ const LoginModal=()=>{
             <div className="text-neutral-500 text-center mt-4 font-light">
                 <div className=" justify-center flex flex-row items-center gap-2">
                     <div>
-                        Already have an account?
+                        Frist time using Airbnb?
                     </div>
-                    <div className="text-neutral-800 cursor-pointer hover:underline">
-                        Log in
+                    <div 
+                    onClick={toogle}
+                    className="text-neutral-800 cursor-pointer hover:underline">
+                        Create an account
                     </div>
                 </div>
             </div>

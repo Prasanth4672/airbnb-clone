@@ -8,14 +8,17 @@ import { FieldValues,RegisterOptions,SubmitHandler,useForm, UseFormRegisterRetur
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
-import Input from "../Input";
+import Input from "../inputs/Input";
 import { error } from "console";
 import toast from "react-hot-toast";
 import Button from "../Button";
 import { signIn} from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal=()=>{
 
+
+    const loginModal = useLoginModal();
     const registerModal = useRegisterModal();
     const [isLoading,setIsLoading] = useState(false);
     const {register,handleSubmit,formState:{
@@ -32,7 +35,11 @@ const RegisterModal=()=>{
         setIsLoading(true);
 
         axios.post('/api/register',data)
-        .then(()=>{registerModal.onClose();})
+        .then(()=>{
+            toast.success('Success!');
+            registerModal.onClose();
+            loginModal.onOpen();
+        })
         .catch((error)=>{
             toast.error('Something went Wrong.');
         })
@@ -40,6 +47,11 @@ const RegisterModal=()=>{
             setIsLoading(false);
         });
     }
+
+    const toogle = useCallback(()=>{
+        registerModal.onClose();
+        loginModal.onOpen();
+    },[loginModal,registerModal]);
 
     const bodyContent=(
         <div className="flex flex-col gap-4">
@@ -96,7 +108,9 @@ const RegisterModal=()=>{
                     <div>
                         Already have an account?
                     </div>
-                    <div className="text-neutral-800 cursor-pointer hover:underline">
+                    <div
+                    onClick={toogle}
+                    className="text-neutral-800 cursor-pointer hover:underline">
                         Log in
                     </div>
                 </div>
