@@ -1,7 +1,9 @@
+
 import getCurrentUser from "../actions/getCurrentUser";
 import getListings from "../actions/getListings";
 import EmptyState from "../components/EmptyState";
 import PropertiesClient from "../components/PropertiesClient";
+
 
 const PropertiesPage = async () => {
     const currentUser = await getCurrentUser();
@@ -28,8 +30,9 @@ const PropertiesPage = async () => {
     }
   
     return (
-      
+     
       <PropertiesClient listings={listings} currentUser={currentUser} />
+      
     );
   };
   

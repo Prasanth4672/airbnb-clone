@@ -1,18 +1,21 @@
-import Image from "next/image";
+
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import getListings, { IListingsParams } from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 import ListingCard from "./components/listing/ListingCard";
+
 interface HomeProps {
   searchParams: IListingsParams;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home({ searchParams }: HomeProps) {
 
-
-  const listing = await getListings(searchParams);
   const currentUser = await getCurrentUser();
+  const listing = await getListings(searchParams);
+
  
 
   if (listing.length===0) {
@@ -37,6 +40,7 @@ export default async function Home({ searchParams }: HomeProps) {
             );
           })}
         </div>
+     
       </Container>
   );
 }

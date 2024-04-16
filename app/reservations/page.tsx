@@ -7,6 +7,7 @@ import getCurrentUser from "../actions/getCurrentUser";
 import getReservations from "../actions/getReservations";
 import ReservationsClient from "../components/ReservationsClient";
 
+
 const ReservationsPage = async ()=>{
 
     const currentUser = await getCurrentUser();
@@ -31,10 +32,12 @@ const ReservationsPage = async ()=>{
     }
 
     return(
-        <ReservationsClient
+      
+         <ReservationsClient
         reservations={reservations}
         currentUser={currentUser}
         />
+     
     )
 
 }

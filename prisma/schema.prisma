@@ -27,6 +27,7 @@ model User{
   accounts Account[]
   listings Listing[]
   reservations Reservation[]
+  @@map("users")
 }
 
 model Account {
@@ -46,6 +47,8 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+   @@map("accounts")
+  
 }
 
 model Listing {
@@ -64,6 +67,8 @@ model Listing {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
+
+  @@map("listings")
 }
 
 model Reservation {
@@ -77,4 +82,6 @@ model Reservation {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@map("reservations")
 }

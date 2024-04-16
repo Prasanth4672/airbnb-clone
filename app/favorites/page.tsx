@@ -1,7 +1,9 @@
+
 import getCurrentUser from "../actions/getCurrentUser";
 import getFavoriteListings from "../actions/getFavoriteListings";
 import EmptyState from "../components/EmptyState";
 import FavoritesClient from "../components/FavoritesClient";
+
 
 
 type Props = {};
@@ -30,8 +32,9 @@ const FavoritePage = async (props: Props) => {
   }
 
   return (
-   
-      <FavoritesClient listings={listings} currentUser={currentUser} />
+
+        <FavoritesClient listings={listings} currentUser={currentUser} />
+ 
 
   );
 };
