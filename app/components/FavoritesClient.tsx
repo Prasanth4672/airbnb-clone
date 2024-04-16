@@ -1,6 +1,6 @@
-import Container from "../components/Container";
-import Heading from "../components/Heading";
-import ListingCard from "../components/listing/ListingCard";
+import Container from "./Container";
+import Heading from "./Heading";
+import ListingCard from "./listing/ListingCard";
 import { SafeListing, SafeUser } from "../types";
 
 

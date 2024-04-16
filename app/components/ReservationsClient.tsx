@@ -7,9 +7,9 @@ import { useRouter } from "next/navigation";
 
 import { SafeReservation,SafeUser } from "../types";
 
-import Heading from "../components/Heading";
-import Container from"../components/Container";
-import ListingCard from "../components/listing/ListingCard";
+import Heading from "./Heading";
+import Container from"./Container";
+import ListingCard from "./listing/ListingCard";
 
 type Props = {
     reservations: SafeReservation[];
